@@ -67,12 +67,19 @@ public class FXMLController {
         		txtResult.setText("Inserire caratteri del tipo a-zA-Z");
         		return ;
     		}
+    	}
         	if(aD.translateWord(word) == null)	
         		txtResult.setText("La parola aliena: "+ word.toUpperCase()+ " non è presente nel AlineDictionary");
     		// TODO: CONTROLLO SUI CARATTERI AMMESSI
-    		else 
-				txtResult.setText("La traduzione della parola: " +word.toUpperCase()+ " è: " + aD.translateWord(word).toUpperCase()) ;
-    	}
+    		else {
+				
+        	String result= "" ;
+        	 for ( String s: aD.translateWord(word)) {
+        		 result += s +"\n";
+        		 
+        	 }
+        	 txtResult.setText("La traduzione della parola: " +word.toUpperCase()+ " è: \n" + result);
+    		}
     }
 
     @FXML

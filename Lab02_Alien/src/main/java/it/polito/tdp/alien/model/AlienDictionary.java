@@ -5,37 +5,30 @@ import java.util.List;
 
 public class AlienDictionary {
 	
-	List<Word> dizionarioAlien ;
-	List<WordEnhanced> dizionarioAlien2 ;
-	
+	List<WordEnhanced> dizionarioAlien ;
 	
 	public AlienDictionary() {
-		dizionarioAlien= new ArrayList<Word>() ;
-		dizionarioAlien2= new ArrayList<WordEnhanced>() ;
+		dizionarioAlien= new ArrayList<WordEnhanced>() ;
 	}
 	
 	public void addWord(String alienWord, String translation) {
-		Word w = new Word(alienWord, translation) ;
+		 WordEnhanced w = new WordEnhanced(alienWord) ;
+			if(dizionarioAlien.contains(w)) {
+				dizionarioAlien.get(dizionarioAlien.indexOf(w)).aggiungiTraduzione(translation);
+			}
+			else {
+		 w = new WordEnhanced(alienWord, translation) ;
 		this.dizionarioAlien.add(w) ;
+			}
 	}
-	public String translateWord(String alienWord) {
-		 Word w = new Word(alienWord) ;
+	public List<String> translateWord(String alienWord) {
+		 WordEnhanced w = new WordEnhanced(alienWord) ;
 			if(dizionarioAlien.contains(w))
-				return dizionarioAlien.get(dizionarioAlien.indexOf(w)).getTranslation() ;
-		
+				return dizionarioAlien.get(dizionarioAlien.indexOf(w)).getTranslations() ;
 		return null ;
-	}
-	
-	public boolean cercaWord(Word w) {
-		for(Word word: this.dizionarioAlien) {
-			if(word.getAlienWord().equals(w.getAlienWord()))
-				return true ;
-		}
-		return false ;
 	}
 	
 	public void resetDictionary() {
 		this.dizionarioAlien.clear();
 	}
-
 }

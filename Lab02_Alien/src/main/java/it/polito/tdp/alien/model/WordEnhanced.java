@@ -1,27 +1,49 @@
 package it.polito.tdp.alien.model;
-
+import java.util.LinkedList;
 import java.util.List;
 
 public class WordEnhanced {
 	
 	private String alienWord;
-	private List<String> translations;
+	private String translation;
+	private List<String> translations = new LinkedList<String>() ;
 	
-	public WordEnhanced(String alienWord, List<String> translations) {
+	public WordEnhanced(String alienWord, String translation) {
 		super();
 		this.alienWord = alienWord;
-		this.translations = translations;
+		this.translation = translation ;
+		this.translations.add(translation) ;
 	}
+	
+	public void aggiungiTraduzione(String traduzione) {
+		translations.add(traduzione) ;
+	}
+	
 	public WordEnhanced(String alienWord) {
 		super();
 		this.alienWord = alienWord;
 	}
+	
 	public String getAlienWord() {
 		return alienWord;
 	}
+
+	public String getTranslation() {
+		return translation;
+	}
+
 	public List<String> getTranslations() {
 		return translations;
 	}
+	
+	public boolean cercaTraduzione(String traduzione) {
+		for(String string : this.translations) {
+			if(string.equals(traduzione))
+				return true ;
+		}
+		return false ;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -29,6 +51,7 @@ public class WordEnhanced {
 		result = prime * result + ((alienWord == null) ? 0 : alienWord.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -45,5 +68,4 @@ public class WordEnhanced {
 			return false;
 		return true;
 	}
-	
 }
